@@ -1,0 +1,59 @@
+---
+title: "homework02"
+author: "Brendan Zimmer"
+date: "9/28/2021"
+output: github_document
+---
+
+```{r}
+library(nycflights13)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+
+```{r}
+glimpse(flights)
+```
+#1
+```{r}
+flights %>% 
+  filter(is.na(dep_time))
+```
+#for dep_time there are 8,255 rows missing that have NA values.  This most likely means the plane never took off.  I believe this becasue the dep_delay, arr_time, arr_delay, air_time, and some tailnum also have NA values.  Some tailnum are recoreded when other columns have a NA, but I think this could be due to the plane arriving at the airport, probably getting checked in and then never leaving.  Also, I noticed that many of these flights are grouped up around the same day and sometimes time, I am not sure if that is significant or not though.
+
+#2
+```{r}
+flights %>% 
+  select(dep_time, sched_dep_time) %>% 
+  mutate(dep_minutes_since_midnight = ((dep_time %/% 100)*60 + dep_time %% 100),
+         sched_dep_minutes_since_midnight = ((sched_dep_time %/% 100)*60 + sched_dep_time %% 100))
+```
+#3
+```{r}
+cancelled_flights <- flights %>% 
+  mutate(cancelled = (is.na(arr_delay) | is.na(dep_delay))) %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    cancelled_num = sum(cancelled),
+    avg_cancelled = mean(cancelled),
+    flights_num = n()
+  )
+```
+```{r}
+cancelled_delay_flights <- flights %>% 
+  mutate(cancelled = is.na(dep_delay)) %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    cancelled_prop = mean(cancelled),
+    avg_dep_delay = mean(dep_delay, na.rm = TRUE)
+  ) 
+
+ggplot(cancelled_delay_flights) +
+  geom_point(aes(x = avg_dep_delay, y = cancelled_prop))
+```
+
+
+#There is a definite decrease in flights every day execept in the first 3, while there is also an incrase of the number of flights.  There is also a strong positive relationship between avg_dep_delay and cancelled flights
+
