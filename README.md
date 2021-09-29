@@ -127,6 +127,26 @@ cancelled_flights <- flights %>%
     ## `summarise()` has grouped output by 'year', 'month'. You can override using the `.groups` argument.
 
 ``` r
+cancelled_flights
+```
+
+    ## # A tibble: 365 x 6
+    ## # Groups:   year, month [12]
+    ##     year month   day cancelled_num avg_cancelled flights_num
+    ##    <int> <int> <int>         <int>         <dbl>       <int>
+    ##  1  2013     1     1            11       0.0131          842
+    ##  2  2013     1     2            15       0.0159          943
+    ##  3  2013     1     3            14       0.0153          914
+    ##  4  2013     1     4             7       0.00765         915
+    ##  5  2013     1     5             3       0.00417         720
+    ##  6  2013     1     6             3       0.00361         832
+    ##  7  2013     1     7             3       0.00322         933
+    ##  8  2013     1     8             7       0.00779         899
+    ##  9  2013     1     9             9       0.00998         902
+    ## 10  2013     1    10             3       0.00322         932
+    ## # ... with 355 more rows
+
+``` r
 cancelled_delay_flights <- flights %>% 
   mutate(cancelled = is.na(dep_delay)) %>% 
   group_by(year, month, day) %>% 
