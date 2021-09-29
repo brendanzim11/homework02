@@ -5,6 +5,7 @@ date: "9/28/2021"
 output: github_document
 ---
 
+#library
 ```{r}
 library(nycflights13)
 library(tidyverse)
@@ -12,7 +13,7 @@ library(dplyr)
 library(ggplot2)
 ```
 
-
+#Looking at the different columns for flights
 ```{r}
 glimpse(flights)
 ```
@@ -55,5 +56,5 @@ ggplot(cancelled_delay_flights) +
 ```
 
 
-#There is a definite decrease in flights every day execept in the first 3, while there is also an incrase of the number of flights.  There is also a strong positive relationship between avg_dep_delay and cancelled flights
+#There is a definite decrease in flights every day execept in the first 3, while there is also an incrase of the number of flights.  There is also a strong positive relationship between avg_dep_delay and cancelled flights.  So yes they are related meaning most liekly as the average_dep_delay increase the average number of flights canceled also increases.
 
