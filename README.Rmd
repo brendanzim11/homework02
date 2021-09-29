@@ -5,8 +5,8 @@ date: "9/28/2021"
 output: github_document
 ---
 
-```{r setup, include = FALSE, cache = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(fig.path='Figs/')
 ```
 
 #library
