@@ -163,7 +163,7 @@ ggplot(cancelled_delay_flights) +
   geom_point(aes(x = avg_dep_delay, y = cancelled_prop))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](Figs/unnamed-chunk-6-1.png)<!-- -->
 
 \#There is a definite decrease in flights every day execept in the first
 3, while there is also an incrase of the number of flights. There is
