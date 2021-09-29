@@ -5,6 +5,10 @@ date: "9/28/2021"
 output: github_document
 ---
 
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
 #library
 ```{r}
 library(nycflights13)
@@ -41,6 +45,8 @@ cancelled_flights <- flights %>%
     avg_cancelled = mean(cancelled),
     flights_num = n()
   )
+
+cancelled_flights
 ```
 ```{r}
 cancelled_delay_flights <- flights %>% 
